@@ -16,52 +16,46 @@
         /// <param name="args">The args.</param>
         public override void Process(ExpandInitialFieldValueArgs args)
         {
+            Sitecore.Diagnostics.Log.Info("init QueryToken", this);
             Assert.ArgumentNotNull(args, "args");
 
-
-
-            if (args.SourceField.Value.Length == 0 || args.SourceField.Value.IndexOf('$') < 0)
+            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$query", System.StringComparison.Ordinal) < 0)
             {
                 return;
             }
 
-
-            string query = string.Empty;
-            string resultFieldname = string.Empty;
-            string fieldValue = args.Result;
+            var query = string.Empty;
+            var resultFieldname = string.Empty;
+            var fieldValue = args.Result;
             
+            const string Pattern = @".*\$query\((.*[^\|])\|(\w*).*";
+            var regex = new Regex(Pattern, RegexOptions.IgnoreCase);
+            var match = regex.Match(fieldValue);
 
-            if (fieldValue.IndexOf("$query", System.StringComparison.Ordinal) > -1)
+            if (match.Success)
             {
-                string pat = @".*\$query\((.*);(\w*).*";
-                var r = new Regex(pat, RegexOptions.IgnoreCase);
+                query = match.Groups[1].Value;
+                resultFieldname = match.Groups[2].Value;
+            }
 
-                var m = r.Match(fieldValue);
-                if (m.Success)
+            if (query.Length > 0 && resultFieldname.Length > 0)
+            {
+                try
                 {
-                    query = m.Groups[1].Value;
-                    resultFieldname = m.Groups[2].Value;
-                }
-
-                if (query.Length > 0 && resultFieldname.Length > 0)
-                {
-                    try
+                    var queryResultItem = args.TargetItem.Axes.SelectSingleItem(query);
+                    if (queryResultItem != null)
                     {
-                        var queryResultItem = args.TargetItem.Axes.SelectSingleItem(query);
-                        if (queryResultItem != null)
-                        {
-                            args.Result = queryResultItem[resultFieldname];
-                        }
-                    }
-                    catch (Exception)
-                    {  
-                        Sitecore.Diagnostics.Log.Error("Failed to execute query [" + query + "]", this);
+                        args.Result = queryResultItem[resultFieldname];
                     }
                 }
-                else
-                {
-                    Sitecore.Diagnostics.Log.Warn("Failed to start replacing values because either query or fieldname are empty.", this);
+                catch (Exception)
+                {  
+                    Sitecore.Diagnostics.Log.Error("Failed to execute query [" + query + "]", this);
                 }
+            }
+            else
+            {
+                Sitecore.Diagnostics.Log.Warn("Failed to start replacing values because either query or fieldname are empty.", this);
             }
         }
     }
