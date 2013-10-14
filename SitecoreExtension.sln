@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreExtension.TokenSet", "SitecoreExtension.TokenSet\SitecoreExtension.TokenSet.csproj", "{2DF42C1F-DA32-4D14-A679-DC62411CD157}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreExtension.TokenSet", "src\SitecoreExtension.TokenSet\SitecoreExtension.TokenSet.csproj", "{2DF42C1F-DA32-4D14-A679-DC62411CD157}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
