@@ -5,13 +5,13 @@
     <Import Project="CopyFiles.targets" />
     
     <Target Name="DoDeploy">
-        <CallTarget Targets="ReadDeployDir" Condition="Exists('deploy.txt')" />
+        <CallTarget Targets="ReadDeployDir" Condition="Exists('..\..\build\deploy.txt')" />
         <CallTarget Targets="DoCopyFiles" />
     </Target>
 
     <Target Name="ReadDeployDir">
     <!-- This needs to be a seperate target because otherwise $(DeployDir) won't be available in other targets. -->
-        <ReadLinesFromFile File="deploy.txt">
+		<ReadLinesFromFile File="..\..\build\deploy.txt">
             <Output PropertyName="DeployDir" TaskParameter="Lines" />
         </ReadLinesFromFile>
     </Target>

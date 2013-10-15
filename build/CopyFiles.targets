@@ -6,27 +6,27 @@
         <!-- copy everything but the folders from the exclude list to the deployment directory -->
         <ItemGroup>
             <GeneralFiles
-				Include="	$(MSBuildStartupDirectory)\..\**"
-				Exclude="	$(MSBuildStartupDirectory)\..\**\*.cs;
-							$(MSBuildStartupDirectory)\..\*.csproj*;
-							$(MSBuildStartupDirectory)\..\*.idc;
-							$(MSBuildStartupDirectory)\..\*.xml;
-							$(MSBuildStartupDirectory)\..\bin\**;
-							$(MSBuildStartupDirectory)\..\obj\**;
-							$(MSBuildStartupDirectory)\..\Properties\**" />
+				Include="	$(MSBuildProjectDirectory)\**"
+				Exclude="	$(MSBuildProjectDirectory)\**\*.cs;
+							$(MSBuildProjectDirectory)\*.csproj*;
+							$(MSBuildProjectDirectory)\*.idc;
+							$(MSBuildProjectDirectory)\*.xml;
+							$(MSBuildProjectDirectory)\bin\**;
+							$(MSBuildProjectDirectory)\obj\**;
+							$(MSBuildProjectDirectory)\Properties\**" />
 					
             <AppConfigFiles
-				Include="	$(MSBuildStartupDirectory)\..\App_Config\**\*.config" />
+				Include="	$(MSBuildProjectDirectory)\App_Config\**\*.config" />
 				
             <Binaries
-				Include="	$(MSBuildStartupDirectory)\..\bin\*"
-				Exclude="	$(MSBuildStartupDirectory)\..\bin\*.xml;
-							$(MSBuildStartupDirectory)\..\bin\*.pdb" />
+				Include="	$(MSBuildProjectDirectory)\bin\*"
+				Exclude="	$(MSBuildProjectDirectory)\bin\*.xml;
+							$(MSBuildProjectDirectory)\bin\*.pdb" />
         </ItemGroup>
 
-        <Copy SourceFiles="@(GeneralFiles)" DestinationFiles="@(GeneralFiles->'$(DeployDir)\$(Environment)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
-        <Copy SourceFiles="@(AppConfigFiles)" DestinationFiles="@(AppConfigFiles->'$(DeployDir)\$(Environment)\App_Config\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
-        <Copy SourceFiles="@(Binaries)" DestinationFiles="@(Binaries->'$(DeployDir)\$(Environment)\bin\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
+        <Copy SourceFiles="@(GeneralFiles)" DestinationFiles="@(GeneralFiles->'$(DeployDir)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
+        <Copy SourceFiles="@(AppConfigFiles)" DestinationFiles="@(AppConfigFiles->'$(DeployDir)\App_Config\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
+        <Copy SourceFiles="@(Binaries)" DestinationFiles="@(Binaries->'$(DeployDir)\bin\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
     </Target>
 
 </Project>
