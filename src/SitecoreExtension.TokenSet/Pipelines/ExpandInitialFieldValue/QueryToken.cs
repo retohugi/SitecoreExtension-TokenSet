@@ -16,7 +16,6 @@
         /// <param name="args">The args.</param>
         public override void Process(ExpandInitialFieldValueArgs args)
         {
-            Sitecore.Diagnostics.Log.Info("init QueryToken", this);
             Assert.ArgumentNotNull(args, "args");
 
             if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$query", System.StringComparison.Ordinal) < 0)
@@ -43,13 +42,14 @@
                 try
                 {
                     var queryResultItem = args.TargetItem.Axes.SelectSingleItem(query);
+                    
                     if (queryResultItem != null)
                     {
                         args.Result = queryResultItem[resultFieldname];
                     }
                 }
                 catch (Exception)
-                {  
+                {
                     Sitecore.Diagnostics.Log.Error("Failed to execute query [" + query + "]", this);
                 }
             }
