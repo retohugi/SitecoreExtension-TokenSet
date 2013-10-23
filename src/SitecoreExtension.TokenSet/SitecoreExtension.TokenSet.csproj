@@ -85,9 +85,10 @@
     <Reference Include="System.Web.RegularExpressions" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_config\Include\SitecoreExtension.TokenSet.config">
+    <Content Include="App_config\Include\SitecoreExtension.TokenSet.config">
       <SubType>Designer</SubType>
-    </None>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
