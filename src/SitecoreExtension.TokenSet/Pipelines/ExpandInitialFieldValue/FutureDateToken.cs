@@ -40,25 +40,28 @@
                 return;
             }
 
-            var query = string.Empty;
-            var resultFieldname = string.Empty;
+            
+            //var query = string.Empty;
+            //var resultFieldname = string.Empty;
             var fieldValue = args.Result;
 
-            const string Pattern = @"\$futureDate\((\d),(\d),(\d)\)";
+            const string Pattern = @"(\$futureDate\((\d),(\d),(\d)\))";
             var regex = new Regex(Pattern, RegexOptions.IgnoreCase);
             var match = regex.Match(fieldValue);
 
             if (match.Success)
             {
-                var years = match.Groups[1].Value;
-                var months = match.Groups[2].Value;
-                var days = match.Groups[3].Value;
+                var token = match.Groups[1].Value;
+                var years = match.Groups[2].Value;
+                var months = match.Groups[3].Value;
+                var days = match.Groups[4].Value;
 
-                args.Result =
+                args.Result = fieldValue.Replace(
+                    token,
                     DateUtil.ToIsoDate(
                         DateTime.Now.AddYears(this.GetInt(years, 0))
                                 .AddMonths(this.GetInt(months, 0))
-                                .AddDays(this.GetInt(days, 0)));
+                                .AddDays(this.GetInt(days, 0))));
             }
             else
             {

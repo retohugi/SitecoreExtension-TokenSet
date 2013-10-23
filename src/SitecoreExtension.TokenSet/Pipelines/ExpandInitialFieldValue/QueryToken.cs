@@ -23,18 +23,20 @@
                 return;
             }
 
+            var token = string.Empty;
             var query = string.Empty;
             var resultFieldname = string.Empty;
             var fieldValue = args.Result;
             
-            const string Pattern = @".*\$query\((.*[^\|])\|(\w*).*";
+            const string Pattern = @"(\$query\((.*[^\|])\|(\w*)\))";
             var regex = new Regex(Pattern, RegexOptions.IgnoreCase);
             var match = regex.Match(fieldValue);
 
             if (match.Success)
             {
-                query = match.Groups[1].Value;
-                resultFieldname = match.Groups[2].Value;
+                token = match.Groups[1].Value;
+                query = match.Groups[2].Value;
+                resultFieldname = match.Groups[3].Value;
             }
 
             if (query.Length > 0 && resultFieldname.Length > 0)
@@ -45,7 +47,7 @@
                     
                     if (queryResultItem != null)
                     {
-                        args.Result = queryResultItem[resultFieldname];
+                        args.Result = args.Result.Replace(token, queryResultItem[resultFieldname]);
                     }
                 }
                 catch (Exception)
