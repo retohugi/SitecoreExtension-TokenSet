@@ -14,7 +14,15 @@ This extension provides additional standard values tokens for Sitecore Data Temp
 </th>
 <tr>
   <td>$futureDate(<i>yy,mm,dd</i>)</td>
-  <td>The $futureDate token was originally created by <a href="https://twitter.com/briancaos">@briancaos</a> but slightly rewritten for the module.</td>
+  <td>The $futureDate token was originally created by <a href="https://twitter.com/briancaos">@briancaos</a> but slightly rewritten for the module.<br>
+      It adds years, months and days to the date of the item creation.<br>
+      For example:
+      <ul>
+       <li>$futureDate(1,0,0)   = Adds Now + 1 year</li>
+       <li>$futureDate(0,6,0)   = Adds Now + 6 months</li>
+       <li>$futureDate(1,6,12)  = Adds Now + 1 year, 6 months, 12 days</li>
+      </ul>
+  </td>
 </tr>
 </tr>
 </table>
