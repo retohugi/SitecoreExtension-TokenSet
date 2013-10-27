@@ -7,32 +7,18 @@
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines.ExpandInitialFieldValue;
 
-
     /// <summary>
-    /// Pipeline processor for the ExpandInitialFieldValue pipeline that allows me to
-    /// set a date in the future for an item.
+    /// Pipeline processor for the ExpandInitialFieldValue pipeline that allows to
+    /// set a date in the future for an item. (Idea and parts of the code by https://twitter.com/briancaos)
     /// </summary>
     public class FutureDateToken : ExpandInitialFieldValueProcessor
     {
         /// <summary>
         /// Processes the specified args.
         /// </summary>
-        /// <remarks>
-        /// The format of the replacement string is the following:
-        /// $futureDate(years,months,days)
-        /// where:
-        /// - years = years to add
-        /// - months = months to add
-        /// - days = days to add
-        /// For example:
-        /// $futureDate(1,0,0)   = Adds DateTime.Now + 1 year
-        /// $futureDate(0,6,0)   = Adds DateTime.Now + 6 months
-        /// $futureDate(1,6,12)  = Adds DateTime.Now + 1 year, 6 months, 12 days
-        /// </remarks>
         /// <param name="args">The args.</param>
         public override void Process(ExpandInitialFieldValueArgs args)
         {
-            Sitecore.Diagnostics.Log.Info("init futureDateToken", this);
             Assert.ArgumentNotNull(args, "args");
 
             if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$futureDate", System.StringComparison.Ordinal) < 0)
@@ -40,9 +26,6 @@
                 return;
             }
 
-            
-            //var query = string.Empty;
-            //var resultFieldname = string.Empty;
             var fieldValue = args.Result;
 
             const string Pattern = @"(\$futureDate\((\d),(\d),(\d)\))";
@@ -65,7 +48,7 @@
             }
             else
             {
-                Sitecore.Diagnostics.Log.Error(
+                Sitecore.Diagnostics.Log.Warn(
                     "Invalid $futureDate format. Expected: $futureDate(years,months,days) (for example $futureDate(1,0,0)).",this);
             }
         }

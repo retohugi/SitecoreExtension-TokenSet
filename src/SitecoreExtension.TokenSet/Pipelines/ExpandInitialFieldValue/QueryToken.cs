@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text.RegularExpressions;
+
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines.ExpandInitialFieldValue;
 
@@ -18,14 +19,11 @@
         {
             Assert.ArgumentNotNull(args, "args");
 
-            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$query", System.StringComparison.Ordinal) < 0)
+            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$query", StringComparison.Ordinal) < 0)
             {
                 return;
             }
 
-            var token = string.Empty;
-            var query = string.Empty;
-            var resultFieldname = string.Empty;
             var fieldValue = args.Result;
             
             const string Pattern = @"(\$query\((.*[^\|])\|(\w*)\))";
@@ -34,30 +32,31 @@
 
             if (match.Success)
             {
-                token = match.Groups[1].Value;
-                query = match.Groups[2].Value;
-                resultFieldname = match.Groups[3].Value;
-            }
+                var token = match.Groups[1].Value;
+                var query = match.Groups[2].Value;
+                var resultFieldname = match.Groups[3].Value;
 
-            if (query.Length > 0 && resultFieldname.Length > 0)
-            {
-                try
+
+                if (query.Length > 0 && resultFieldname.Length > 0)
                 {
-                    var queryResultItem = args.TargetItem.Axes.SelectSingleItem(query);
-                    
-                    if (queryResultItem != null)
+                    try
                     {
-                        args.Result = args.Result.Replace(token, queryResultItem[resultFieldname]);
+                        var queryResultItem = args.TargetItem.Axes.SelectSingleItem(query);
+
+                        if (queryResultItem != null)
+                        {
+                            args.Result = args.Result.Replace(token, queryResultItem[resultFieldname]);
+                        }
                     }
-                }
-                catch (Exception)
-                {
-                    Sitecore.Diagnostics.Log.Error("Failed to execute query [" + query + "]", this);
+                    catch (Exception)
+                    {
+                        Log.Error("Failed to execute query [" + query + "]", this);
+                    }
                 }
             }
             else
             {
-                Sitecore.Diagnostics.Log.Warn("Failed to start replacing values because either query or fieldname are empty.", this);
+                Log.Warn("Invalid $query() token", this);
             }
         }
     }
