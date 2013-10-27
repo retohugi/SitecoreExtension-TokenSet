@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Token Set")]
 [assembly: AssemblyDescription("A Sitecore Extension")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SitecoreExtension.TokenSet.Properties")]
 [assembly: AssemblyCopyright("Reto Hugi")]
 [assembly: AssemblyTrademark("")]
