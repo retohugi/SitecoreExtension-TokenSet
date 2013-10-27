@@ -37,5 +37,5 @@ Install via NuGet Gallery
 </pre>
 
 ## Build
-See Readme.md in the /build folder.
+See [Readme.md in the /build folder](https://github.com/retohugi/SitecoreExtensions/blob/master/build/readme.md).
 
