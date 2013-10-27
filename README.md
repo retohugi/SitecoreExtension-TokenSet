@@ -1,6 +1,9 @@
-# SitecoreExtensions-TokenSet
+# Token Set - a Sitecore Extension
 
-This extension provides additional standard values tokens for Sitecore Data Templates. Read John West's blog post for an [introduction on Standard Value Tokens](http://www.sitecore.net/Community/Technical-Blogs/John-West-Sitecore-Blog/Posts/2012/05/Expand-Standard-Values-Tokens-in-Existing-Items-with-the-Sitecore-ASPNET-CMS.aspx) 
+This extension provides additional standard values tokens for Sitecore Data Templates. Read John West's blog post for an [introduction on Standard Value Tokens](http://www.sitecore.net/Community/Technical-Blogs/John-West-Sitecore-Blog/Posts/2012/05/Expand-Standard-Values-Tokens-in-Existing-Items-with-the-Sitecore-ASPNET-CMS.aspx).
+
+Well, it might be a bit exaggerated to call two extensions a "set", but I'm planning to add some more. Have an idea for a cool token? Let me know or even better send a pull request. :)
+
 
 ## Available Tokens
 <table>
@@ -37,5 +40,5 @@ Install via NuGet Gallery
 </pre>
 
 ## Build
-See Readme.md in the /build folder.
+See [Readme.md in the /build folder](https://github.com/retohugi/SitecoreExtensions/blob/master/build/readme.md).
 
