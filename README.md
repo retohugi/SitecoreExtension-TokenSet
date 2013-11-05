@@ -12,19 +12,26 @@ Well, it might be a bit exaggerated to call two extensions a "set", but I'm plan
   <th>Description</th>
 </tr>
 <tr>
-  <td>$query(<i>sitecore&nbsp;query</i>|<i>field&nbsp;name</i>)</td>
-  <td>Where <i>sitecore query</i> is a Sitecore query, executed relative to the position in the content tree where the new item is created. The token takes the first item in the result and replaces itself with the value of <i>field name</i>.</td>
+  <td><pre>$query(<i>sitecore&nbsp;query</i>|<i>field&nbsp;name</i>)</pre></td>
+  <td>
+  Where <i>sitecore query</i> is a Sitecore query, executed relative to the position in the content tree where the new item is created. The token takes the first item in the result and replaces itself with the value of <i>field name</i>.<br><br>
+  Usage Examples:<br>
+  Provide some kind of dynamic default values authors can manage (nope, Authors should not edit _Standard Values templates):
+  <pre>$query(/sitecore/content/Website/Config//*[@@name="Default config"]|Default Title)</pre>
+  Or simply create dynamic defaults by copying the content from a parent items field.
+<pre>$query(..|Description)</pre>
+  </td>
 </th>
 <tr>
-  <td>$futureDate(<i>yy,mm,dd</i>)</td>
+  <td><pre>$futureDate(<i>yy,mm,dd</i>)</pre></td>
   <td>The $futureDate token was originally created by <a href="https://twitter.com/briancaos">@briancaos</a> but slightly rewritten for the module.<br>
-      It adds years, months and days to the date of the item creation.<br>
-      For example:
-      <ul>
-       <li>$futureDate(1,0,0)   = Adds Now + 1 year</li>
-       <li>$futureDate(0,6,0)   = Adds Now + 6 months</li>
-       <li>$futureDate(1,6,12)  = Adds Now + 1 year, 6 months, 12 days</li>
-      </ul>
+  It adds years, months and days to the date of the item creation.<br>
+  For example:
+  <ul>
+   <li>$futureDate(1,0,0)   = Adds Now + 1 year</li>
+   <li>$futureDate(0,6,0)   = Adds Now + 6 months</li>
+   <li>$futureDate(1,6,12)  = Adds Now + 1 year, 6 months, 12 days</li>
+  </ul>
   </td>
 </tr>
 </tr>
