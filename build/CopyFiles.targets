@@ -21,7 +21,8 @@
             <Binaries
 				Include="	$(MSBuildProjectDirectory)\bin\*"
 				Exclude="	$(MSBuildProjectDirectory)\bin\*.xml;
-							$(MSBuildProjectDirectory)\bin\*.pdb" />
+							$(MSBuildProjectDirectory)\bin\*.pdb;
+							$(MSBuildProjectDirectory)\bin\Sitecore.*.dll" />
         </ItemGroup>
 
         <Copy SourceFiles="@(GeneralFiles)" DestinationFiles="@(GeneralFiles->'$(DeployDir)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
