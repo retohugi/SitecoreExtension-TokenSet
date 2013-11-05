@@ -3,8 +3,11 @@
     using System;
     using System.Text.RegularExpressions;
 
+    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines.ExpandInitialFieldValue;
+
+    using Debug = System.Diagnostics.Debug;
 
     /// <summary>
     /// Processor to execute queries during token replacement in standard values.
@@ -19,7 +22,7 @@
         {
             Assert.ArgumentNotNull(args, "args");
 
-            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$query", StringComparison.Ordinal) < 0)
+            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$query", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 return;
             }
@@ -34,29 +37,46 @@
             {
                 var token = match.Groups[1].Value;
                 var query = match.Groups[2].Value;
-                var resultFieldname = match.Groups[3].Value;
+                var fieldname = match.Groups[3].Value;
 
-
-                if (query.Length > 0 && resultFieldname.Length > 0)
+                if (query.Length > 0 && fieldname.Length > 0)
                 {
-                    try
+                    var resultItem = this.GetItemFromRelativeQuery(query, args.TargetItem);
+                    if (resultItem != null)
                     {
-                        var queryResultItem = args.TargetItem.Axes.SelectSingleItem(query);
-
-                        if (queryResultItem != null)
-                        {
-                            args.Result = args.Result.Replace(token, queryResultItem[resultFieldname]);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        Log.Error("Failed to execute query [" + query + "]", this);
+                        args.Result = string.IsNullOrEmpty(resultItem[fieldname]) ? 
+                            args.Result.Replace(token, string.Empty) : 
+                            args.Result.Replace(token, resultItem[fieldname]);
                     }
                 }
             }
             else
             {
-                Log.Warn("Invalid $query() token", this);
+                Log.Error("Invalid $query() token. Expected format: $query(<query>|<fieldname>)", this);
+            }
+        }
+
+        /// <summary>
+        /// Gets the item from a query relativ to the provided item. Fastquery and Sitecore queries are supported.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="item">The Sitecore item.</param>
+        /// <returns>the matching item or null</returns>
+        private Item GetItemFromRelativeQuery(string query, Item item)
+        {
+            Assert.ArgumentNotNull(item, "item");
+
+            try
+            {
+                var queryResultItem = query.StartsWith("fast:", StringComparison.OrdinalIgnoreCase) ? 
+                    item.Database.SelectSingleItem(query) : 
+                    Sitecore.Data.Query.Query.SelectItems(query, item)[0];
+                return queryResultItem;
+            }
+            catch (Exception)
+            {
+                Log.Error("Failed to execute query [" + query + "]", this);
+                return null;
             }
         }
     }
