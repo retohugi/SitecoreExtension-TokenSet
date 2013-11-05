@@ -21,7 +21,7 @@
         {
             Assert.ArgumentNotNull(args, "args");
 
-            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$futureDate", System.StringComparison.Ordinal) < 0)
+            if (args.SourceField.Value.Length == 0 || args.Result.IndexOf("$futureDate", System.StringComparison.OrdinalIgnoreCase) < 0)
             {
                 return;
             }
