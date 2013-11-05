@@ -7,11 +7,11 @@
         <authors>Reto Hugi</authors>
         <owners>Reto Hugi</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A Sitecore Extension</description>
+        <description>A Sitecore Extension providing additional Standard Values Tokens.</description>
         <copyright>Reto Hugi</copyright>
     </metadata>
     <files>
         <file src="App_config\Include\SitecoreExtension.TokenSet.config" target="content\App_config\Include\SitecoreExtension.TokenSet.config" />
-        <file src="lib\net45\SitecoreExtension.TokenSet.dll" target="lib\net45\SitecoreExtension.TokenSet.dll" />
+        <file src="lib\SitecoreExtension.TokenSet.dll" target="lib\SitecoreExtension.TokenSet.dll" />
     </files>
 </package>
