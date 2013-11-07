@@ -2,16 +2,19 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SitecoreExtension.TokenSet</id>
-        <version>0.1.0.0</version>
+        <version>1.0.0.0</version>
         <title>Token Set</title>
         <authors>Reto Hugi</authors>
         <owners>Reto Hugi</owners>
+        <licenseUrl>https://github.com/retohugi/SitecoreExtension-TokenSet/blob/master/LICENSE.txt</licenseUrl>
+		<projectUrl>https://github.com/retohugi/SitecoreExtension-tokenset</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A Sitecore Extension providing additional Standard Values Tokens.</description>
+		<tags>sitecore standard values token</tags>
         <copyright>Reto Hugi</copyright>
     </metadata>
     <files>
         <file src="App_config\Include\SitecoreExtension.TokenSet.config" target="content\App_config\Include\SitecoreExtension.TokenSet.config" />
-        <file src="lib\SitecoreExtension.TokenSet.dll" target="lib\SitecoreExtension.TokenSet.dll" />
+        <file src="bin\SitecoreExtension.TokenSet.dll" target="lib\SitecoreExtension.TokenSet.dll" />
     </files>
 </package>
