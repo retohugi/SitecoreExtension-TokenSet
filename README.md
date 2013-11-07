@@ -43,7 +43,7 @@ Well, it might be a bit exaggerated to call two extensions a "set", but I'm plan
 ## Installation 
 Install via NuGet Gallery
 <pre>
-  PM> tbd
+  PM> Install-Package SitecoreExtension.TokenSet
 </pre>
 
 ## Build
