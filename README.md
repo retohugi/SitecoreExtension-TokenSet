@@ -47,7 +47,7 @@ Install via NuGet Gallery
 </pre>
 
 ## Build
-See [Readme.md in the /build folder](https://github.com/retohugi/SitecoreExtensions/blob/master/build/readme.md).
+See [Readme.md in the /build folder](https://github.com/retohugi/SitecoreExtension-TokenSet/blob/master/build/readme.md).
 
 ## Contribute
 Have an idea for another handy standard value token? Let me know and create an issue on GitHub or even better, make a pull request.
