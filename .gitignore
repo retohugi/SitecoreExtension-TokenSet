@@ -25,11 +25,6 @@ obj/
 _ReSharper*/
 TestResults
 
-#Project specific ignores
-build/deploy.txt
-lib/*.dll
-lib/*.pdb
-
 /packages
 
 # Build ignores

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Sitecore.Kernel</id>
+    <version>1.0.0</version>
+    <authors>Sitecore</authors>
+    <description>Sitecore Kernel DLL</description>
+  </metadata>
+  <files>
+    <file src="Sitecore.Kernel.dll" target="lib\Sitecore.Kernel.dll" />
+  </files>
+</package>

@@ -1,0 +1,3 @@
+#ignore Sitecore specific libraries
+Sitecore.*.nupkg
+Sitecore.*.dll
