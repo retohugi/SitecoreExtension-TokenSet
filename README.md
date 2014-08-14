@@ -1,3 +1,6 @@
+
+[![Build status](https://ci.appveyor.com/api/projects/status/5esc11aqi8xuw93c)](https://ci.appveyor.com/project/retohugi/sitecoreextension-tokenset-222)
+
 # Token Set - a Sitecore Extension
 
 This extension provides additional standard value tokens for Sitecore Data Templates. Read John West's blog post for an [introduction on Standard Value Tokens](http://www.sitecore.net/Community/Technical-Blogs/John-West-Sitecore-Blog/Posts/2012/05/Expand-Standard-Values-Tokens-in-Existing-Items-with-the-Sitecore-ASPNET-CMS.aspx).
@@ -52,4 +55,3 @@ See [Readme.md in the /build folder](https://github.com/retohugi/SitecoreExtensi
 ## Contribute
 Have an idea for another handy standard value token? Let me know and create an issue on GitHub or even better, make a pull request.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/5esc11aqi8xuw93c)](https://ci.appveyor.com/project/retohugi/sitecoreextension-tokenset-222)
