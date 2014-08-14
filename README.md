@@ -51,3 +51,5 @@ See [Readme.md in the /build folder](https://github.com/retohugi/SitecoreExtensi
 
 ## Contribute
 Have an idea for another handy standard value token? Let me know and create an issue on GitHub or even better, make a pull request.
+
+[![Build status](https://ci.appveyor.com/api/projects/status/5esc11aqi8xuw93c)](https://ci.appveyor.com/project/retohugi/sitecoreextension-tokenset-222)
